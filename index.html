@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/app.js" type="text/javascript"></script>
-</head>
-<body>
-    <table></table>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        <title>BookShop</title>
+    </head>
+    <body>
+        <div>
+            <form action="" method="post" role="form" class="bookAdd">                
+                <h2>Add a Book</h2>
+                <label>Title
+                    <input type='text' name='title' id='name'>
+                </label>
+                <br>
+                <label>Author
+                    <input type='text' name='author' id='author'>
+                </label>
+                <br>
+                <label>Book description
+                    <input type='text' name='description' id='bookDesc'>
+                </label>
+                <br>
+                <input type="submit" value="Add a book!" id='submit'>
+            </form>
+            <hr>
+        </div>
+        <table></table>
+    </body>
 </html>
-

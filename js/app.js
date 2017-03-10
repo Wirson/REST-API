@@ -25,4 +25,25 @@ $(document).ready(function () {
             }
         });
     });
+    //dodawanie książki
+    var name = $('#name');
+    var author = $('#author');
+    var bookDesc = $('#bookDesc');
+    
+    var btn = $('#submit');
+    
+    btn.on('click', function () {
+        $(this).preventDefault;
+        $.ajax({
+            url: "api/books.php",
+            data: {
+                name: name.val(),
+                author: author.val(),
+                book_desc: bookDesc.val()
+            },
+            type: "POST",
+            dataType: "json",
+            //success: function (json) {}
+        });
+    });
 });
