@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var table = $('table');
-    //wczytanie książek po tytule
+    //loading all books
     $.ajax({
         url: "api/books.php",
         method: "GET",

@@ -1,6 +1,7 @@
 <?php
 
-include_once('book.php');
+//include_once('book.php'); when book.php was in config
+include_once(__DIR__ . '/../../src/Book.php');
 
 //DANE DOSTĘPOWE DO BAZY DANYCH
 //STRUKTURA DO IMPORTU W PLIKU dump.sql
