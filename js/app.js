@@ -21,7 +21,7 @@ $(document).ready(function () {
             method: "GET",
             dataType: "json",
             success: function (json) {                       //button usuwający książkę z datasetem = id książki z bazy
-                thisDiv.html('<p>' + json[id].book_desc + '</p><button data-id="' + json[id].id + '">Delete book</button>').slideDown();
+                thisDiv.html('<p>' + json[id].book_desc + '</p><p>' + json[id].author + '</p><button data-id="' + json[id].id + '" id="delete">Delete book</button><button data-id="' + json[id].id + '" id="update">Update book</button>').slideDown();
             }
         });
     });
@@ -45,8 +45,43 @@ $(document).ready(function () {
             dataType: "json"
         });
     });
+    //modify
+    table.on('click', '#update', function () {
+
+        var bookId = $(this).data('id');
+        var updateForm = $(this).find('.update');
+
+        $.ajax({
+            url: 'api/books.php',
+            method: 'GET',
+            dataType: "json",
+            success: function (json) {
+                $('#updateId').attr('value', json[bookId].id);
+                $('#updateName').attr('value', json[bookId].name);
+                $('#updateAuthor').attr('value', json[bookId].author);
+                $('#updateBookDesc').attr('value', json[bookId].book_desc);
+            }
+        })
+        $('#updateBtn').on('click', function () {
+            $(this).preventDefault;
+            $.ajax({
+                url: "api/books.php",
+                method: "PUT",
+                data: {
+                    id: $('#updateId').val(),
+                    name: $('#updateName').val(),
+                    author: $('#updateAuthor').val(),
+                    desc: $('#updateBookDesc').val()
+                },
+                dataType: "json",
+                success: function () {
+                    updateForm.slideUp();
+                }
+            })
+        })
+    });
     //usuwanie książki
-    table.on('click', 'button', function () {
+    table.on('click', '#delete', function () {
         var btn = $(this).parent().parent().parent();
         //usuwanie rekodu z bazy
         $.ajax({
@@ -55,9 +90,9 @@ $(document).ready(function () {
                 id: $(this).data('id')
             },
             method: "DELETE"
-        }).     //usuwanie wpisu ze strony
-                done(function (data) {
-                    btn.remove();
-                });
+        }).//usuwanie wpisu ze strony
+        done(function (data) {
+            btn.remove();
+        });
     });
 });
